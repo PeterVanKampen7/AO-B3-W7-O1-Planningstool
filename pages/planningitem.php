@@ -59,7 +59,7 @@
                         <p class="col-4">Spelers:</p>
                         <p class="col-8"><?php 
                             foreach($aanwezigheid_all as $aanwezigheid){
-                                if($aanwezigheid['role'] != 'gm'){
+                                if($aanwezigheid['role'] != 'uitleg'){
                                     echo $users[$aanwezigheid['user_id']] . '</br>';
                                 }
                             }
