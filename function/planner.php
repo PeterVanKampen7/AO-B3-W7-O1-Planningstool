@@ -29,7 +29,7 @@
     $result = $conn->prepare("INSERT INTO aanwezigheid SET 
                                     `user_id` = :user_id,
                                     appointment_id = :appointment_id,
-                                    `role` = 'gm'
+                                    `role` = 'uitleg'
                                     ");
     $result->execute(['user_id' => $gm,
                     'appointment_id' => $app_id
@@ -39,7 +39,7 @@
         $result = $conn->prepare("INSERT INTO aanwezigheid SET 
                                     `user_id` = :user_id,
                                     appointment_id = :appointment_id,
-                                    `role` = 'player'
+                                    `role` = 'speler'
                                     ");
         $result->execute(['user_id' => $player,
                         'appointment_id' => $app_id
