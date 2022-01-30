@@ -23,10 +23,10 @@
         <h1 class="index_title py-3">Plan een spel in</h1>
 
         <div class="container row w-100 p-3">
-            <form action="">
-                <div class="form-group">
+            <form action="../function/planner.php" method='post'>
+                <div class="form-group my-2">
                     <label for="chosen_game">Welk spel wil je inplannen?</label>
-                    <select name="chosen_game" id="chosen_game" class='form-control'>
+                    <select name="chosen_game" id="chosen_game" class='form-control' required>
                         <?php
                             foreach($rows as $game){
                                 if($_GET['id'] == $game['id']){
@@ -38,15 +38,19 @@
                         ?>
                     </select>
                 </div>
-                <div class="form-group">
-
+                <div class="form-group my-2">
+                    <label for="chosen_time">Welke tijd gaat dit spel gespeelt worden?</label>
+                    <input type='time' name="chosen_time" id="chosen_time" class='form-control' required>
                 </div>
-                <div class="form-group">
-
+                <div class="form-group my-2">
+                    <label for="chosen_gm">Wie geeft uitleg bij dit spel?</label>
+                    <input type='text' name="chosen_gm" id="chosen_gm" class='form-control' required>
                 </div>
-                <div class="form-group">
-
+                <div class="form-group my-2">
+                    <label for="chosen_player">Wie gaan dit spel spelen?</label>
+                    <input type='text' name="chosen_player" id="chosen_player" class='form-control' required>
                 </div>
+                <button type="submit" class="btn btn-primary my-2">Plan het spel in</button>
             </form>
         </div>
     </div>

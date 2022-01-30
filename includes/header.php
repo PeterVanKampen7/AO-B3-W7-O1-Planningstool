@@ -9,7 +9,7 @@
                 <a href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/Jaar_1_Blok_4/AO-B3-W7-O1-Planningstool/'.'pages/inplannen.php'; ?>" class="nav-link text-light py-1">Inplannen</a>
             </li>
             <li class="nav_item btn btn-primary mx-3">
-                <a href="#" class="nav-link text-light py-1">Overzicht</a>
+                <a href="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/Jaar_1_Blok_4/AO-B3-W7-O1-Planningstool/'.'pages/overzicht.php'; ?>" class="nav-link text-light py-1">Overzicht</a>
             </li>
         </ul>
     </div>
