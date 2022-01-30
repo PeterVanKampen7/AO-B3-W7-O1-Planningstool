@@ -45,11 +45,11 @@
                 <?php
                     foreach($schedule_all as $schedule){
                         ?>
-                            <li class="list-group-item row d-flex flex-row">
-                                <p class="game_name col-2"><?php echo $games[$schedule['game_id']]['name'] ?></p>
-                                <p class="start_time col-2"><?php echo $schedule['start_time'] ?></p>
-                                <p class="duration col-2"><?php echo $games[$schedule['game_id']]['play_minutes'] ?></p>
-                                <p class="gm col-2"><?php echo $schedule['game_master'] ?></p>
+                            <li class="list-group-item row d-flex flex-row align-items-center">
+                                <p class="game_name col-2 m-0"><?php echo $games[$schedule['game_id']]['name'] ?></p>
+                                <p class="start_time col-2 m-0"><?php echo $schedule['start_time'] ?></p>
+                                <p class="duration col-2 m-0"><?php echo $games[$schedule['game_id']]['play_minutes'] ?></p>
+                                <p class="gm col-2 m-0"><?php echo $schedule['game_master'] ?></p>
                                 <div class="controls row d-flex flex-row col-4">
                                     <a href="planningitem.php?id=<?php echo $schedule['id']; ?>" class="btn btn-primary col-7 mx-1">Details</a>
                                     <a href="../function/editor.php?id=<?php echo $schedule['id']; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
