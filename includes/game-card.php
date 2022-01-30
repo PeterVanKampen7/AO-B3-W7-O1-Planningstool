@@ -9,7 +9,6 @@
                 <div class="col-2"></div>
                 <a href="[[ game_plan ]]" class="btn btn-primary mt-3 col-5">Inplannen</a>
             </div>
-            
         </div>
     </div>
 </div>

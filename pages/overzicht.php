@@ -31,7 +31,7 @@
     <?php include('../includes/header.php'); ?>
     
     <div class="content container mx-5 my-5 w-100 h-100">
-        <h1 class="index_title py-3">Overzicht</h1>
+        <h1 class="index_title py-3">Agenda</h1>
 
         <div class="container row w-100 p-3">
             <div class="controls my-3 p-2 row d-flex flex-row">
