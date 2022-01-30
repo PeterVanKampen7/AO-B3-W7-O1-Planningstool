@@ -9,6 +9,21 @@
     $result = $conn->prepare($query);
     $result->execute(['safe' => $schedule['game_id']]);
     $game = $result->fetch();
+
+    $query = "SELECT * FROM aanwezigheid WHERE appointment_id=:safe";
+    $result = $conn->prepare($query);
+    $result->execute(['safe' => $_GET["id"]]);
+    $aanwezigheid_all = $result->fetchAll();
+
+    $query = "SELECT * FROM users";
+    $result = $conn->prepare($query);
+    $result->execute();
+    $users_all = $result->fetchAll();
+
+    $users = array();
+    foreach($users_all as $user){
+        $users[$user['id']] = $user['username'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +53,17 @@
                     </li>
                     <li class="list-group-item row flex-row d-flex">
                         <p class="col-4">Uitleg van:</p>
-                        <p class="col-8"><?php echo $schedule['game_master'];?></p>
+                        <p class="col-8"><?php echo $users[$schedule['game_master']];?></p>
                     </li>
                     <li class="list-group-item row flex-row d-flex">
                         <p class="col-4">Spelers:</p>
-                        <p class="col-8"><?php echo $schedule['players'];?></p>
+                        <p class="col-8"><?php 
+                            foreach($aanwezigheid_all as $aanwezigheid){
+                                if($aanwezigheid['role'] != 'gm'){
+                                    echo $users[$aanwezigheid['user_id']] . '</br>';
+                                }
+                            }
+                        ?></p>
                     </li>
                 </ul>
                 <h5>Spel informatie</h5>

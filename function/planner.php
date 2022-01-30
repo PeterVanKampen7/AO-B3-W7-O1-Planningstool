@@ -16,15 +16,36 @@
                                     game_id = :game_id,
                                     start_time = :start_time,
                                     end_time = :end_time,
-                                    game_master = :game_master,
-                                    players = :players
+                                    game_master = :game_master
                                     ");
     $result->execute(['game_id' => $game_id,
                     'start_time' => $start_time,
                     'end_time' => $end_time,
-                    'game_master' => $gm,
-                    'players' => $players
+                    'game_master' => $gm
                     ]);
+
+    $app_id = $conn->lastInsertId();
+
+    $result = $conn->prepare("INSERT INTO aanwezigheid SET 
+                                    `user_id` = :user_id,
+                                    appointment_id = :appointment_id,
+                                    `role` = 'gm'
+                                    ");
+    $result->execute(['user_id' => $gm,
+                    'appointment_id' => $app_id
+                    ]);
+
+    foreach($players as $player){
+        $result = $conn->prepare("INSERT INTO aanwezigheid SET 
+                                    `user_id` = :user_id,
+                                    appointment_id = :appointment_id,
+                                    `role` = 'player'
+                                    ");
+        $result->execute(['user_id' => $player,
+                        'appointment_id' => $app_id
+                        ]);
+    }
+
 ?>
 
 <!DOCTYPE html>

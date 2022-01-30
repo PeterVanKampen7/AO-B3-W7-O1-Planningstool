@@ -4,6 +4,11 @@
     $result = $conn->prepare($query);
     $result->execute();
     $rows = $result->fetchAll();
+
+    $userquery = "SELECT * FROM users ORDER BY username";
+    $userresult = $conn->prepare($userquery);
+    $userresult->execute();
+    $users = $userresult->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -44,11 +49,24 @@
                 </div>
                 <div class="form-group my-2">
                     <label for="chosen_gm">Wie geeft uitleg bij dit spel?</label>
-                    <input type='text' name="chosen_gm" id="chosen_gm" class='form-control' required>
+                    <select name="chosen_gm" id="chosen_gm" class='form-control' required>
+                        <?php
+                            foreach($users as $user){
+                                echo '<option value="'.$user['id'].'">'.$user['username'].'</option>';
+                            }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group my-2">
                     <label for="chosen_player">Wie gaan dit spel spelen?</label>
-                    <input type='text' name="chosen_player" id="chosen_player" class='form-control' required>
+                    <select name="chosen_player[]" id="chosen_player" class='form-control' required multiple>
+                        <?php
+                            foreach($users as $user){
+                                echo '<option value="'.$user['id'].'">'.$user['username'].'</option>';
+                            }
+                        ?>
+                    </select>
+                    <p class="text-secondary">Ctrl + klik voor meerdere opties</p>
                 </div>
                 <button type="submit" class="btn btn-primary my-2">Plan het spel in</button>
             </form>
