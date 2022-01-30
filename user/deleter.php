@@ -1,5 +1,5 @@
 <?php
-    require("../../includes/connect.php");
+    require("../includes/connect.php");
 
     if(isset($_POST['submit'])){      
         $result = $conn->prepare("DELETE FROM users WHERE id=:safe");
@@ -19,7 +19,7 @@
     <title>Planningstool</title>
 </head>
 <body>
-    <?php include('../../includes/header.php'); ?>
+    <?php include('../includes/header.php'); ?>
     
     <div class="content container mx-5 my-5 w-100 h-100">
         <h1 class="index_title py-3">Gebruiker verwijderen</h1>
@@ -36,7 +36,7 @@
         ?>
 
         <div class="container row w-100 p-3">
-            <form action="../../function/user/deleter.php?id=<?php echo $_GET['id']; ?>" method='post'>
+            <form action="../user/deleter.php?id=<?php echo $_GET['id']; ?>" method='post'>
                 <h4>Weet je zeker dat je deze gebruiker wilt verwijderen?</h4>
                 <button type="submit" name='submit' class="btn btn-danger my-2"> <i class="fas fa-trash"></i> Verwijder gebruiker</button>
             </form>
@@ -46,6 +46,6 @@
     </div>
 
 
-    <?php include('../../includes/footer.php'); ?>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>

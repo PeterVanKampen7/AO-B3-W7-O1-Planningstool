@@ -84,8 +84,8 @@
         </div>
         <div class="col-4 p3 col">
             <div class="single_game_buttons row d-flex justify-content-center mt-5">
-            <a href="../function/editor.php?id=<?php echo $schedule['id']; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
-            <a href="../function/deleter.php?id=<?php echo $schedule['id']; ?>" class="btn btn-danger col-2 mx-1"><i class="fas fa-trash"></i></a>
+            <a href="../user/editor.php?id=<?php echo $_GET["id"]; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
+            <a href="../user/deleter.php?id=<?php echo $_GET["id"]; ?>" class="btn btn-danger col-2 mx-1"><i class="fas fa-trash"></i></a>
             </div>          
         </div>
         

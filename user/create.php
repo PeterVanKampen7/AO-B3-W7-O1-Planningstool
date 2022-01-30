@@ -1,5 +1,5 @@
 <?php
-    require("../../includes/connect.php");
+    require("../includes/connect.php");
 
     $result = $conn->prepare("INSERT INTO users SET username = :username");
     $result->execute(['username' => $_POST['chosen_name']]);
@@ -16,7 +16,7 @@
     <title>Planningstool</title>
 </head>
 <body>
-    <?php include('../../includes/header.php'); ?>
+    <?php include('../includes/header.php'); ?>
     
     <div class="content container mx-5 my-5 w-100 h-100">
         <h1 class="index_title py-3">Gebruiker aangemaakt</h1>
@@ -24,11 +24,11 @@
         <div class="container row w-100 p-3">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
             <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_pWVo9w.json"  background="transparent"  speed="1"  style="width: 30%; height: 30%;" autoplay></lottie-player>       </div>
-            <a href="../../pages/overzicht.php" class="btn btn-primary">Ga naar de agenda</a>
+            <a href="../pages/overzicht.php" class="btn btn-primary">Ga naar de agenda</a>
         </div>
     </div>
 
 
-    <?php include('../../includes/footer.php'); ?>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>

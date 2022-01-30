@@ -37,8 +37,8 @@
                                 <p class="col-5 m-0"></p>
                                 <div class="controls row d-flex flex-row col-3">
                                     <a href="gebruiker.php?id=<?php echo $user['id']; ?>" class="btn btn-primary col-6 mx-1">Details</a>
-                                    <a href="../function/user/editor.php?id=<?php echo $user['id']; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
-                                    <a href="../function/user/deleter.php?id=<?php echo $user['id']; ?>" class="btn btn-danger col-2 mx-1"><i class="fas fa-trash"></i></a>
+                                    <a href="../user/editor.php?id=<?php echo $user['id']; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
+                                    <a href="../user/deleter.php?id=<?php echo $user['id']; ?>" class="btn btn-danger col-2 mx-1"><i class="fas fa-trash"></i></a>
                                 </div>
                             </li>
                         <?php

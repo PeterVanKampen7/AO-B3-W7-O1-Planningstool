@@ -19,7 +19,7 @@
         <h1 class="index_title py-3">Aanmelden</h1>
 
         <div class="container row w-100 p-3">
-            <form action="../function/user/create.php" method='post'>
+            <form action="../user/create.php" method='post'>
                 <div class="form-group my-2">
                     <label for="chosen_name">Gerbuikersnaam:</label>
                     <input type='text' name="chosen_name" id="chosen_name" class='form-control' required>
