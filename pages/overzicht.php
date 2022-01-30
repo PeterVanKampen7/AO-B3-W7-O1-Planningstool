@@ -1,6 +1,6 @@
 <?php
     require("../includes/connect.php");
-    $query = "SELECT id, game_id, start_time, game_master FROM schedule";
+    $query = "SELECT id, game_id, start_time, end_time, game_master FROM schedule ORDER BY start_time ASC";
     $result = $conn->prepare($query);
     $result->execute();
     $schedule_all = $result->fetchAll();
@@ -35,9 +35,10 @@
 
         <div class="container row w-100 p-3">
             <div class="controls my-3 p-2 row d-flex flex-row">
-                <p class="col-2 align-content-center m-0">Spelnaam</p>
-                <p class="col-2 align-content-center m-0">Start tijd</p>
-                <p class="col-2 align-content-center m-0">Tijdsduur</p>
+                <p class="col-4 align-content-center m-0">Spelnaam</p>
+                <p class="col-1 align-content-center m-0">Start tijd</p>
+                <p class="col-1 align-content-center m-0">Eind tijd</p>
+                <p class="col-1 align-content-center m-0">Tijdsduur</p>
                 <p class="col-2 align-content-center m-0">Uitleg van</p>
             </div>
             <ul class="list-group">
@@ -46,12 +47,13 @@
                     foreach($schedule_all as $schedule){
                         ?>
                             <li class="list-group-item row d-flex flex-row align-items-center">
-                                <p class="game_name col-2 m-0"><?php echo $games[$schedule['game_id']]['name'] ?></p>
-                                <p class="start_time col-2 m-0"><?php echo $schedule['start_time'] ?></p>
-                                <p class="duration col-2 m-0"><?php echo $games[$schedule['game_id']]['play_minutes'] ?></p>
+                                <p class="game_name col-4 m-0"><?php echo $games[$schedule['game_id']]['name'] ?></p>
+                                <p class="start_time col-1 m-0"><?php echo $schedule['start_time'] ?></p>
+                                <p class="start_time col-1 m-0"><?php echo $schedule['end_time'] ?></p>
+                                <p class="duration col-1 m-0"><?php echo $games[$schedule['game_id']]['play_minutes'] . 'min' ?></p>
                                 <p class="gm col-2 m-0"><?php echo $schedule['game_master'] ?></p>
-                                <div class="controls row d-flex flex-row col-4">
-                                    <a href="planningitem.php?id=<?php echo $schedule['id']; ?>" class="btn btn-primary col-7 mx-1">Details</a>
+                                <div class="controls row d-flex flex-row col-3">
+                                    <a href="planningitem.php?id=<?php echo $schedule['id']; ?>" class="btn btn-primary col-6 mx-1">Details</a>
                                     <a href="../function/editor.php?id=<?php echo $schedule['id']; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
                                     <a href="../function/deleter.php?id=<?php echo $schedule['id']; ?>" class="btn btn-danger col-2 mx-1"><i class="fas fa-trash"></i></a>
                                 </div>
