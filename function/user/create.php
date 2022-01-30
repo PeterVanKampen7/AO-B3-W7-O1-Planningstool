@@ -24,7 +24,7 @@
         <div class="container row w-100 p-3">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
             <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_pWVo9w.json"  background="transparent"  speed="1"  style="width: 30%; height: 30%;" autoplay></lottie-player>       </div>
-            <a href="../pages/overzicht.php" class="btn btn-primary">Ga naar de agenda</a>
+            <a href="../../pages/overzicht.php" class="btn btn-primary">Ga naar de agenda</a>
         </div>
     </div>
 
