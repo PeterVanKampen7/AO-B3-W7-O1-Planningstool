@@ -8,16 +8,38 @@
             start_time = :start_time,
             end_time = 10,
             game_master = :game_master,
-            players = :players
             WHERE id=:id"
         );
         $result->execute([
             'game_id' => intval($_POST['chosen_game']),
             'start_time' => intval(str_replace(':', '', $_POST['chosen_time'])),
             'game_master' => $_POST['chosen_gm'],
-            'players' => $_POST['chosen_player'],
             'id' => $_GET["id"]
         ]);   
+
+
+        $result = $conn->prepare("DELETE FROM aanwezigheid WHERE appointment_id=:safe");
+        $result->execute(['safe' => $_GET['id']]);
+
+        $result = $conn->prepare("INSERT INTO aanwezigheid SET 
+                                    `user_id` = :user_id,
+                                    appointment_id = :appointment_id,
+                                    `role` = 'uitleg'
+                                    ");
+        $result->execute(['user_id' => $_POST['chosen_gm'],
+                        'appointment_id' => $_GET["id"]
+                        ]);
+
+        foreach($_POST['chosen_player'] as $player){
+            $result = $conn->prepare("INSERT INTO aanwezigheid SET 
+                                    `user_id` = :user_id,
+                                    appointment_id = :appointment_id,
+                                    `role` = 'speler'
+                                    ");
+            $result->execute(['user_id' => $player,
+                            'appointment_id' => $_GET["id"]
+                            ]);
+        }
     }    
     
     $query = "SELECT * FROM schedule WHERE id=:safe";
@@ -36,6 +58,21 @@
     $result = $conn->prepare($query);
     $result->execute();
     $games_all = $result->fetchAll();
+
+    $userquery = "SELECT * FROM users ORDER BY username";
+    $userresult = $conn->prepare($userquery);
+    $userresult->execute();
+    $users = $userresult->fetchAll();
+
+    $userquery = "SELECT `user_id` FROM aanwezigheid WHERE appointment_id = :safe AND `role` != 'uitleg'";
+    $userresult = $conn->prepare($userquery);
+    $userresult->execute(['safe' => $_GET["id"]]);
+    $players = $userresult->fetchAll();
+
+    $selected_players = array();
+    foreach($players as $player){
+        $selected_players[] = $player['user_id'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -89,12 +126,37 @@
                 </div>
                 <div class="form-group my-2">
                     <label for="chosen_gm">Wie geeft uitleg bij dit spel?</label>
-                    <input type='text' name="chosen_gm" id="chosen_gm" class='form-control' required value="<?php echo $schedule['game_master']; ?>">
+                    <select name="chosen_gm" id="chosen_gm" class='form-control' required>
+                        <?php
+                            foreach($users as $user){
+                                if($user['id'] == $schedule['game_master']){
+                                    echo '<option value="'.$user['id'].'" selected>'.$user['username'].'</option>';
+                                } else {
+                                    echo '<option value="'.$user['id'].'">'.$user['username'].'</option>';
+                                }
+                                
+                            }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group my-2">
                     <label for="chosen_player">Wie gaan dit spel spelen?</label>
-                    <input type='text' name="chosen_player" id="chosen_player" class='form-control' required value="<?php echo $schedule['players']; ?>">
+                    <select name="chosen_player[]" id="chosen_player" class='form-control' required multiple  value="<?php echo $schedule['players']; ?>">
+                        <?php
+                            foreach($users as $user){
+                                if(in_array($user['id'], $selected_players)){
+                                    echo '<option value="'.$user['id'].'" selected>'.$user['username'].'</option>';
+                                } else {
+                                    echo '<option value="'.$user['id'].'">'.$user['username'].'</option>';
+                                }
+                                
+                            }
+                        ?>
+                    </select>
+                    <p class="text-secondary">Ctrl + klik voor meerdere opties</p>
                 </div>
+
+
                 <button type="submit" name='submit' class="btn btn-primary my-2">Bewerk afspraak</button>
             </form>
         </div>

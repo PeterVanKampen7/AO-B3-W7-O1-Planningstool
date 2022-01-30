@@ -14,6 +14,16 @@
     foreach($games_query as $game){
         $games[$game['id']] = $game;
     }
+
+    $query = "SELECT * FROM users";
+    $result = $conn->prepare($query);
+    $result->execute();
+    $users_query = $result->fetchAll();
+
+    $users = array();
+    foreach($users_query as $user){
+        $users[$user['id']] = $user['username'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +61,7 @@
                                 <p class="start_time col-1 m-0"><?php echo $schedule['start_time'] ?></p>
                                 <p class="start_time col-1 m-0"><?php echo $schedule['end_time'] ?></p>
                                 <p class="duration col-1 m-0"><?php echo $games[$schedule['game_id']]['play_minutes'] . 'min' ?></p>
-                                <p class="gm col-2 m-0"><?php echo $schedule['game_master'] ?></p>
+                                <p class="gm col-2 m-0"><?php echo $users[$schedule['game_master']] ?></p>
                                 <div class="controls row d-flex flex-row col-3">
                                     <a href="planningitem.php?id=<?php echo $schedule['id']; ?>" class="btn btn-primary col-6 mx-1">Details</a>
                                     <a href="../function/editor.php?id=<?php echo $schedule['id']; ?>" class="btn btn-secondary col-2 mx-1"><i class="fas fa-edit"></i></a>
