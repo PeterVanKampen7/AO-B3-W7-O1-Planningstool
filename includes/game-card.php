@@ -4,7 +4,12 @@
         <div class="card-body">
             <h5 class="card-title">[[ game_title ]]</h5>
             <div class="card-text">[[ game_desc ]]</div>
-            <a href="[[ game_link ]]" class="btn btn-primary mt-3">Bekijk details</a>
+            <div class="card-controls col-12 row">
+                <a href="[[ game_link ]]" class="btn btn-primary mt-3 col-5">Bekijk details</a>
+                <div class="col-2"></div>
+                <a href="[[ game_plan ]]" class="btn btn-primary mt-3 col-5">Inplannen</a>
+            </div>
+            
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <?php
     require("includes/connect.php");
-    $query = "SELECT * FROM games ORDER BY name";
+    $query = "SELECT id, name, description, image FROM games ORDER BY name";
     $result = $conn->prepare($query);
     $result->execute();
     $rows = $result->fetchAll();
@@ -31,7 +31,8 @@
                     $game_info['game_title'] = $game['name'];
                     $game_info['game_desc'] = $game['description'];
                     $game_info['img_source'] = 'afbeeldingen/' . $game['image'];
-                    $game_info['game_link'] = 'pages/game.php?name=' . $game['name'];
+                    $game_info['game_link'] = 'pages/game.php?id=' . $game['id'];
+                    $game_info['game_plan'] = 'pages/inplannen.php?id=' . $game['id'];
                     foreach($game_info as $key => $value){
                         $template = str_replace('[[ '.$key.' ]]', $value, $template);
                     }

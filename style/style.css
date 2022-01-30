@@ -7,3 +7,8 @@ img.card-img-top{
     height: 200px;
     overflow-y: scroll;
 }
+
+.single_game_img{
+    max-height: 60vh;
+    object-fit: contain;
+}
