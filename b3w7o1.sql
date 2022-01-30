@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 30, 2022 at 06:27 PM
+-- Generation Time: Jan 30, 2022 at 06:54 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -40,11 +40,11 @@ CREATE TABLE `aanwezigheid` (
 --
 
 INSERT INTO `aanwezigheid` (`id`, `appointment_id`, `user_id`, `role`) VALUES
-(4, 15, 2, 'gm'),
 (5, 15, 2, 'player'),
 (6, 15, 1, 'player'),
-(7, 16, 2, 'uitleg'),
-(8, 16, 1, 'speler');
+(11, 16, 2, 'uitleg'),
+(12, 16, 2, 'speler'),
+(13, 16, 1, 'speler');
 
 -- --------------------------------------------------------
 
@@ -174,7 +174,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aanwezigheid`
 --
 ALTER TABLE `aanwezigheid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `games`
